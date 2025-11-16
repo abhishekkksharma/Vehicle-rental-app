@@ -1,0 +1,17 @@
+package com.rental.service;
+
+import com.rental.model.Vehicle;
+import java.util.*;
+
+public class ReportService {
+
+    public void generateReport(List<Vehicle> list) {
+        long available = list.stream().filter(Vehicle::isAvailable).count();
+        long rented = list.size() - available;
+
+        System.out.println("\n--- REPORT ---");
+        System.out.println("Total Vehicles: " + list.size());
+        System.out.println("Available: " + available);
+        System.out.println("Rented: " + rented);
+    }
+}
