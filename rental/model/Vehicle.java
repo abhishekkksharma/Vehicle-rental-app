@@ -5,12 +5,14 @@ public abstract class Vehicle {
     private String model;
     private double rentPerDay;
     private boolean available;
+    private String customerId;
 
     public Vehicle(String vehicleId, String model, double rentPerDay, boolean available) {
         this.vehicleId = vehicleId;
         this.model = model;
         this.rentPerDay = rentPerDay;
         this.available = available;
+        this.customerId = "N/A";
     }
 
     public String getVehicleId() { return vehicleId; }
@@ -18,16 +20,19 @@ public abstract class Vehicle {
     public double getRentPerDay() { return rentPerDay; }
     public boolean isAvailable() { return available; }
     public void setAvailable(boolean available) { this.available = available; }
+    
+    public String getCustomerId() { return customerId; }
+    public void setCustomerId(String customerId) { this.customerId = customerId; }
 
     public abstract String getType();
 
     public String toCSV() {
-        return vehicleId + "," + getType() + "," + model + "," + rentPerDay + "," + available;
+        return vehicleId + "," + getType() + "," + model + "," + rentPerDay + "," + available + "," + customerId;
     }
 
     @Override
     public String toString() {
         return "[" + getType() + "] " + vehicleId + " - " + model + " | ₹" + rentPerDay + "/day | " +
-                (available ? "Available" : "Rented");
+                (available ? "Available" : "Rented by " + customerId);
     }
 }

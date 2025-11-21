@@ -20,11 +20,16 @@ public class FileService {
                 String model = data[2];
                 double rent = Double.parseDouble(data[3]);
                 boolean avail = Boolean.parseBoolean(data[4]);
+                String customerId = (data.length > 5) ? data[5] : "N/A";
 
+                Vehicle vehicle;
                 if (type.equals("Car"))
-                    vehicles.add(new Car(id, model, rent, avail));
+                    vehicle = new Car(id, model, rent, avail);
                 else
-                    vehicles.add(new Bike(id, model, rent, avail));
+                    vehicle = new Bike(id, model, rent, avail);
+                
+                vehicle.setCustomerId(customerId);
+                vehicles.add(vehicle);
             }
 
         } catch (Exception e) {
